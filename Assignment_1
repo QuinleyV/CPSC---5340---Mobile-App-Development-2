@@ -1,0 +1,55 @@
+import SwiftUI
+
+struct CounterItem: Identifiable {
+    let id = UUID()
+    var emoji: String
+    var count: Int
+}
+
+struct ContentView: View {
+
+    @State private var counters: [CounterItem] = [
+        CounterItem(emoji: "😀", count: 0),
+        CounterItem(emoji: "🔥", count: 0),
+        CounterItem(emoji: "🚀", count: 0),
+        CounterItem(emoji: "🍎", count: 0),
+        CounterItem(emoji: "⚽️", count: 0)
+    ]
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(counters.indices, id: \.self) { index in
+                    HStack {
+                        Text(counters[index].emoji)
+
+                        Text("Counter: \(counters[index].count)")
+                            .foregroundColor(.red)
+
+                        Spacer()
+
+                        Button(action: {
+                            counters[index].count += 1
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(.red)
+                        }
+
+                        Button(action: {
+                            counters[index].count -= 1
+                        }) {
+                            Image(systemName: "minus.circle")
+                                .foregroundColor(.red)
+                        }
+                    }
+                    .padding(.vertical, 5)
+                }
+            }
+            .navigationTitle("Emoji Counter")
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
