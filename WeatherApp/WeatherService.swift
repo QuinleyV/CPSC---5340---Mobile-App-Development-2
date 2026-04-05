@@ -21,7 +21,8 @@ enum WeatherError: Error, LocalizedError {
 }
 
 final class WeatherService {
-    private let apiKey = "YOUR_API_KEY_HERE"
+    private let apiKey = "b688ba1b859d5177cb10ece3d91c5150"
+"
 
     func fetchWeather(for city: String) async throws -> WeatherDisplayModel {
         let location = try await fetchCoordinates(for: city)
