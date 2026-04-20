@@ -3,7 +3,7 @@ import FirebaseCore
 
 @main
 struct MyDiaryApp: App {
-    @State private var firebaseConfigured = false
+    private let firebaseConfigured: Bool
     
     init() {
         if let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
@@ -11,6 +11,8 @@ struct MyDiaryApp: App {
            FirebaseApp.app() == nil {
             FirebaseApp.configure(options: options)
             firebaseConfigured = true
+        } else {
+            firebaseConfigured = false
         }
     }
     
